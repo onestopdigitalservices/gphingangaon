@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ग्रामपंचायत कर्मचारी माहिती</title>
+
+<style>
+
+@font-face{
+  font-family:'SakalBharati';
+  src:url('assets/fonts/SakalBharati.ttf') format('truetype');
+  font-weight:normal;
+  font-style:normal;
+}
+
+
+html, body{
+  height:100%;
+  margin:0;
+}
+
+
+/* ===== HEADER ===== */
+.gp-header{
+  position:sticky;
+  top:0;
+   z-index:1000;
+   transition:all .35s ease;
+  background:#fff;
+  border-bottom:2px solid #d81b60;
+
+  /* ✅ ADDED */
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* add this to all */
+.header-container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:12px 10px; /* reduced from 20px */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+
+/* add this to all */
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-left:-100px; /* optional fine-tune */
+}
+
+/* add this to all */
+.gp-logo{
+  height:80px;
+  transition:all .35s ease;
+}
+/* add this to all */
+.gp-title{
+  font-size:28px;
+  color:#002060;
+  font-weight:900;
+  white-space:nowrap;
+  transition:all .35s ease;
+}
+
+/* ===== MENU WITH DROPDOWN ===== */ /* add this to all */
+.header-menu{
+  display:flex;
+  gap:22px;
+  margin-left:auto; /* pushes menu to right */
+}
+
+
+.header-menu li{
+  list-style:none;
+  position:relative;
+}
+
+.header-menu a{
+  text-decoration:none;
+  color:#002060;
+  font-size:18px;
+  font-weight:500;
+  padding:6px 4px;
+  display:block;
+}
+
+.header-menu a:hover{
+  color:#d81b60;
+}
+
+/* DROPDOWN */
+.submenu{
+  position:absolute;
+  top:100%;
+  left:0;
+  background:#fff;
+  min-width:230px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+  display:none;
+  z-index:999;
+}
+
+.submenu a{
+  padding:8px 12px;
+  font-size:14px;
+  border-bottom:1px solid #eee;
+}
+
+.submenu a:hover{
+  background:#ffd6f5;
+}
+
+.header-menu li:hover .submenu{
+  display:block;
+}
+
+/* RIGHT ICONS */
+.header-icons{
+  display:flex;
+  gap:16px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* HEADER GAP */
+.header-gap{
+  height:25px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .header-menu{display:none;}
+  .gp-title{font-size:18px;}
+}
+
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  display:flex;
+  flex-direction:column;
+  font-family:SakalBharati, Arial, sans-serif;
+  background:#ffd6f5;
+}
+
+
+/* PAGE TITLE */
+.page-title{
+    margin-top:500px;   /* 👈 ADD THIS */
+  display:block;              /* ✅ make it block */
+  width:fit-content;          /* ✅ box width = text only */
+  margin:0 auto 35px;         /* ✅ perfect horizontal center */
+
+  font-size:36px;
+  color:#ff0505;
+  font-weight:bold;
+  padding:10px 22px;
+  border:3px solid #4762db;
+  border-radius:10px;
+  background:#ffffff;
+}
+
+/* TABLE WRAPPER */
+.table-box{
+  max-width:900px;
+  margin:0 auto;
+  background:#ffd1ff;
+  border:2px solid #000;
+}
+
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th, td{
+  border:1px solid #000;
+  padding:8px 10px;
+  font-size:15px;
+}
+
+/* HEADER ROW */
+th{
+  background:#ffb3ff;
+  color:#c40000;
+  text-align:center;
+  font-weight:bold;
+}
+
+/* LEFT COLUMN */
+td:first-child{
+  text-align:left;
+}
+
+/* DOWNLOAD COLUMN */
+td:last-child{
+  text-align:center;
+  font-weight:bold;
+}
+
+/* PDF LINK */
+.pdf-link{
+  color:#0000ff;
+  text-decoration:underline;
+  cursor:pointer;
+}
+
+.pdf-link:hover{
+  color:#c40000;
+}
+
+/* 🔹 GAP BEFORE FOOTER (ADDED) */
+/* ================= FOOTER ================= */
+.footer-gap{height:60px;}
+
+/* FOOTER (UNCHANGED) */
+.footer{
+  background:#000;
+  color:#ccc;
+  padding:40px 20px 15px;
+  font-family:Mangal, Arial, sans-serif;
+}
+
+.footer-container{
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  flex-wrap:wrap;
+}
+
+.footer-col{
+  flex:1;
+  min-width:250px;
+}
+
+.footer h3{
+  color:#fff;
+  margin-bottom:12px;
+  font-size:16px;
+}
+
+.footer p,
+.footer a{
+  color:#ccc;
+  font-size:14px;
+  line-height:1.6;
+  text-decoration:none;
+}
+
+.footer a:hover{
+  color:#ffa500;
+}
+
+.footer-links a{
+  display:block;
+  margin-bottom:6px;
+  color:#ffa500;
+}
+
+.digital-box{
+  background:#fff;
+  border-radius:16px;
+  padding:20px;
+  text-align:center;
+  max-width:200px;
+}
+
+.digital-box img{
+  max-width:100%;
+}
+
+.footer-bottom{
+  text-align:center;
+  margin-top:30px;
+  font-size:13px;
+  color:#aaa;
+}
+
+@media(max-width:768px){
+  .footer-container{
+    flex-direction:column;
+  }
+}
+
+/* 🔹 SCROLL TO TOP BUTTON (ADDED) */
+#topBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#ff0808;
+  color:#fff;
+  border:none;
+  padding:10px 14px;
+  border-radius:50%;
+  font-size:18px;
+  cursor:pointer;
+  display:none;
+}
+
+
+/* ===== MOBILE MENU BUTTON ===== */
+.menu-toggle{
+  display:none;
+  font-size:28px;
+  cursor:pointer;
+}
+
+/* MOBILE MENU */
+@media(max-width:900px){
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .header-menu{
+    position:absolute;
+    top:100%;
+    right:0;
+    width:100%;
+    background:#fff;
+    flex-direction:column;
+    display:none;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+  }
+
+  .header-menu.active{
+    display:flex;
+  }
+
+  .header-menu li{
+    border-bottom:1px solid #eee;
+  }
+
+  /* SUBMENU MOBILE */
+  .submenu{
+    position:static;
+    box-shadow:none;
+    display:none;
+  }
+
+  .header-menu li.open .submenu{
+    display:block;
+  }
+}
+
+/* Mobile friendly */
+@media(max-width:768px){
+  h1{
+    font-size:26px;
+  }
+  h2{
+    font-size:18px;
+  }
+}
+
+.page-content{
+  flex:1;
+  padding-top:30px;   /* ✅ THIS WILL WORK */
+}
+
+/* ON SCROLL */
+.gp-header.shrink .header-container{
+  padding:8px 20px;
+}
+
+.gp-header.shrink .gp-logo{
+  height:48px;
+}
+
+.gp-header.shrink .gp-title{
+  font-size:18px;
+}
+
+.gp-header.shrink .header-menu a{
+  font-size:14px;
+}
+
+/* ===== SAME MOBILE VIEW FIX (HEADER) ===== */
+@media (max-width: 900px){
+
+  /* RESET NEGATIVE MARGIN */
+  .header-left{
+    margin-left:0;
+    justify-content:center;
+    width:100%;
+    text-align:center;
+  }
+
+  /* LOGO + TITLE */
+  .gp-logo{
+    height:55px;
+  }
+
+  .gp-title{
+    font-size:18px;
+    white-space:normal;
+    line-height:1.3;
+    text-align:center;
+  }
+
+  /* MENU */
+  .header-menu{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:#fff;
+    flex-direction:column;
+    display:none;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+  }
+
+  .header-menu.active{
+    display:flex;
+  }
+
+  .header-menu li{
+    width:100%;
+    border-bottom:1px solid #eee;
+  }
+
+  .header-menu a{
+    padding:12px 18px;
+    font-size:16px;
+  }
+
+  /* SUBMENU */
+  .submenu{
+    position:static;
+    box-shadow:none;
+    display:none;
+    background:#fafafa;
+  }
+
+  .header-menu li.open .submenu{
+    display:block;
+  }
+
+  /* ICONS CENTER */
+  .header-icons{
+    width:100%;
+    justify-content:center;
+    margin-top:8px;
+    gap:20px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+  
+  <header class="gp-header">
+  <div class="header-container">
+
+    <div class="header-left">
+      <img src="assets\images\whatsapp20image202025-11-3020at2020.20.35-0acaf140-96x96.jpg" class="gp-logo">
+      <div class="gp-title">
+        ग्रामपंचायत कार्यालय,हिंगणगाव
+      </div>
+    </div>
+
+    <ul class="header-menu">
+      <li> <a href="index.html">मुखपृष्ठ</a></li>
+      
+      <li>
+        <a href="#">आमच्याविषयी ▾</a>
+        <div class="submenu">
+          <a href="grampanchayat-vishayi.html">ग्रामपंचायत विषयी</a>
+          <a href="panchayat-mandal.html">पंचायत मंडळ</a>
+          <a href="karmacharivarg.html">इतर कर्मचारी</a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">सेवा ▾</a>
+        <div class="submenu">
+          <a href="karbhrna.html">कर प्रणाली भरणा</a>
+          <a href="swayamgoshna.html">स्वयं घोषणापत्रे</a>
+          <a href="#">दाखले</a>
+          <a href="sanketstale.html">महत्वाचे संकेतस्थळे</a>
+        </div>
+      </li>
+
+      <li><a href="yojna.html">योजना</a></li>
+      <li><a href="mahiti-adhikar.html">माहिती अधिकार</a></li>
+
+      <li>
+        <a href="#">इतर माहिती ▾</a>
+        <div class="submenu">
+          <a href="#">आर्थिक माहिती</a>
+          <a href="suchana.html">सूचना/जाहिरात/निविदा</a>
+          <a href="upakram.html">उपक्रम</a>
+          <a href="apatkalin.html">आपत्कालीन संपर्क</a>
+        </div>
+      </li>
+    </ul>
+
+    <!-- RIGHT : ICONS -->
+    <div class="header-icons">
+  <a href="tel:9623046374" title="Call">📞</a>
+  <a href="#" title="Email">✉️</a>
+  <a href="https://maps.app.goo.gl/MDPhHcR3mKkfcSRt7" target="_blank" title="Location">📍</a>
+  <!-- MOBILE MENU BUTTON -->
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+   </div>
+    
+
+  </div>
+</header>
+
+<main class="page-content">
+
+
+<div class="page-title">सूचना/जाहिरात/निविदा</div>
+
+<div class="table-box">
+<table>
+  <tr>
+    <th>सूचना/जाहिरात/निविदा</th>
+    <th>डाऊनलोड करा</th>
+  </tr>
+
+  <tr>
+    <td> दिनांक 31/12/ 2025 पर्यत
+ "मुख्यमंत्री समृद्ध पंचायतराज अभियान" अंतर्गत घर कर  मध्ये 50% सूट देण्यात येत आहे.
+</td>
+    <td><a href="#" class="pdf-link">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td> दिनांक 28/11/2025 रोजी मासिक सभेचे आयोजन करण्यात येत आहे.</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>दिनांक 14/11/2025 रोजी ग्रामसभा चे आयोजन करण्यात येत आहे.</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>दिनांक 17/10 /2025 रोजी मासिक सभा चे आयोजन करण्यात येत आहे.</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td> 2/10/2025 रोजी स्वच्छता अभियान हिंगणगाव ग्रामपंचायत कडून राबविण्यात येत आहे.</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>दिनांक 17/9/2025 रोजी मुख्यमंत्री समृद्ध पंचायतराज अभियान राबवण्यासंबंधी विशेष ग्रामसभा ग्रामपंचायत कार्यालयामध्ये आयोजित करण्यात येत आहे.</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>दिनांक 17/9/2025 रोजी रक्तदान शिबिर व आरोग्य तपासणी कार्यक्रम ग्रामपंचायत कार्यालयामध्ये राबविण्यात येत आहे.</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td> दिनांक 1/8/2025  रोजी मा.गटविकास अधिकारी साहेब यांची ग्रामपंचायत कार्यालयास भेट.</td>
+    <td></td>
+  </tr>
+
+</table>
+</div>
+
+</main>
+<!-- 🔹 GAP BEFORE FOOTER -->
+<div class="footer-gap"></div>
+
+<footer class="footer">
+
+  <div class="footer-container">
+
+  <div class="footer-col">
+        <h3>कार्यालयीन पत्ता :</h3>
+        <p>
+          ग्रामपंचायत कार्यालय,हिंगणगाव<br>
+          तालुका : धामणगाव रेल्वे<br>
+          जिल्हा : अमरावती<br>
+          📞 संपर्क : 9623046374<br>
+          📧 ई-मेल : gphingangon12@gmail.com<br>
+        </p>
+      </div>
+      
+    <div class="footer-col footer-links">
+      <h3>महत्वाचे</h3>
+      <a href="#">शासकीय निर्णय</a>
+      <a href="#">अमरावती जिल्हा परिषद</a>
+      <a href="#">महाराष्ट्र शासन</a>
+      <a href="#">भारत सरकार</a>
+      <a href="#">महाऑनलाईन</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>महत्वाचे</h3>
+      <p>Privacy Policy</p>
+      <p>Terms & Conditions</p>
+      <p>Disclaimer</p>
+      <p>Cancellation and Refund</p>
+      <p>Shipping and Delivery Policy</p>
+    </div>
+
+    <div class="footer-col">
+      <div class="digital-box">
+        <img src="assets\images\icon.webp" alt="Digital India">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    Copyright © 2025
+  </div>
+
+</footer>
+
+<!-- 🔹 SCROLL TO TOP BUTTON -->
+<button id="topBtn">↑</button>
+
+<script>
+/* SCROLL REVEAL */
+const reveals=document.querySelectorAll(".reveal");
+window.addEventListener("scroll",()=>{
+  reveals.forEach(r=>{
+    const top=r.getBoundingClientRect().top;
+    if(top<window.innerHeight-100){
+      r.classList.add("active");
+    }
+  });
+
+  document.getElementById("topBtn").style.display =
+    window.scrollY>300 ? "block" : "none";
+});
+
+/* SCROLL TO TOP */
+document.getElementById("topBtn").onclick = () =>
+  window.scrollTo({top:0,behavior:"smooth"});
+</script>
+
+<script>
+function toggleMenu(){
+  document.querySelector(".header-menu").classList.toggle("active");
+}
+
+// Open submenu on mobile tap
+document.querySelectorAll(".header-menu > li > a").forEach(link=>{
+  link.addEventListener("click",function(e){
+    if(window.innerWidth <= 900){
+      const parent = this.parentElement;
+      const submenu = parent.querySelector(".submenu");
+      if(submenu){
+        e.preventDefault();
+        parent.classList.toggle("open");
+      }
+    }
+  });
+});
+</script>
+
+<script>
+const header = document.querySelector(".gp-header");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 80) {
+    header.classList.add("shrink");
+  } else {
+    header.classList.remove("shrink");
+  }
+});
+</script>
+
+</body>
+</html>

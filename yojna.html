@@ -1,0 +1,979 @@
+  <!DOCTYPE html>
+  <html lang="mr">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>शासकीय योजना</title>
+
+  <style>
+
+@font-face{
+  font-family:'SakalBharati';
+  src:url('assets/fonts/SakalBharati.ttf') format('truetype');
+  font-weight:normal;
+  font-style:normal;
+}
+
+
+
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+
+  body{
+    font-family:SakalBharati, Arial, sans-serif;
+    background:#ffd6f5;
+  }
+
+  /* ===== HEADER ===== */
+.gp-header{
+  position:sticky;
+  top:0;
+   z-index:1000;
+   transition:all .35s ease;
+  background:#fff;
+  border-bottom:2px solid #d81b60;
+
+  /* ✅ ADDED */
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* add this to all */
+.header-container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:12px 10px; /* reduced from 20px */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+
+/* add this to all */
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-left:-100px; /* optional fine-tune */
+}
+
+/* add this to all */
+.gp-logo{
+  height:80px;
+  transition:all .35s ease;
+}
+/* add this to all */
+.gp-title{
+  font-size:28px;
+  color:#002060;
+  font-weight:900;
+  white-space:nowrap;
+  transition:all .35s ease;
+}
+
+/* ===== MENU WITH DROPDOWN ===== */ /* add this to all */
+.header-menu{
+  display:flex;
+  gap:22px;
+  margin-left:auto; /* pushes menu to right */
+}
+
+
+.header-menu li{
+  list-style:none;
+  position:relative;
+}
+
+.header-menu a{
+  text-decoration:none;
+  color:#002060;
+  font-size:18px;
+  font-weight:500;
+  padding:6px 4px;
+  display:block;
+}
+
+.header-menu a:hover{
+  color:#d81b60;
+}
+
+/* DROPDOWN */
+.submenu{
+  position:absolute;
+  top:100%;
+  left:0;
+  background:#fff;
+  min-width:230px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+  display:none;
+  z-index:999;
+}
+
+.submenu a{
+  padding:8px 12px;
+  font-size:14px;
+  border-bottom:1px solid #eee;
+}
+
+.submenu a:hover{
+  background:#ffd6f5;
+}
+
+.header-menu li:hover .submenu{
+  display:block;
+}
+
+/* RIGHT ICONS */
+.header-icons{
+  display:flex;
+  gap:16px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* HEADER GAP */
+.header-gap{
+  height:25px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .header-menu{display:none;}
+  .gp-title{font-size:18px;}
+}
+
+
+  /* ================= HERO ================= */
+  .hero{
+    background:linear-gradient(180deg,#e9ebff 0%, #9aa4ff 50%, #4b4fe0 100%);
+    padding:60px 20px 120px;
+  }
+
+  .hero-content{
+    max-width:1200px;
+    margin:auto;
+  }
+
+  .hero h1{
+    font-size:40px;
+    margin-bottom:10px;
+  }
+
+  .hero p{
+    max-width:700px;
+    font-size:16px;
+    line-height:1.7;
+  }
+
+  /* ================= YOJANA SECTION ================= */
+  .scheme-section{
+    max-width:1200px;
+    margin:-90px auto 60px;
+    padding:0 20px;
+  }
+
+  .scheme-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+  }
+
+  /* ===== BORDER-ONLY MULTI COLOR AURA ===== */
+  .scheme-card{
+    position:relative;
+    border-radius:14px;
+    background:#fff;
+  }
+
+  /* aura border */
+  .scheme-card::before{
+    content:"";
+    position:absolute;
+    inset:-2px;                 /* border thickness */
+    border-radius:16px;
+    background:linear-gradient(
+      90deg,
+      #6a5cff,
+      #00c6ff,
+      #00ff9d,
+      #ffe259,
+      #ff6ec7,
+      #6a5cff
+    );
+    opacity:0;
+    filter:blur(6px);           /* soft glow */
+    animation:auraMove 6s linear infinite;
+    transition:opacity .3s ease;
+    z-index:-1;
+  }
+
+  /* mask center so glow stays ONLY on border */
+  .scheme-card::after{
+    content:"";
+    position:absolute;
+    inset:2px;                  /* hides inner glow */
+    background:#fff;
+    border-radius:12px;
+    z-index:-1;
+  }
+
+  /* hover trigger */
+  .scheme-card:hover::before{
+    opacity:.9;
+  }
+
+  @keyframes auraMove{
+    from{background-position:0% 50%;}
+    to{background-position:300% 50%;}
+  }
+
+  .scheme-card{
+    background:#fff;
+    border-radius:14px;
+    padding:26px 28px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.12);
+    transition:.3s;
+  }
+
+  .scheme-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(0,0,0,0.18);
+  }
+
+  .scheme-title{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:10px;
+  }
+
+  .scheme-desc{
+    font-size:14px;
+    margin-bottom:14px;
+  }
+
+  .scheme-list{
+    list-style:none;
+    margin-bottom:18px;
+  }
+
+  .scheme-list li{
+    font-size:13.5px;
+    margin-bottom:6px;
+  }
+
+  .more-btn{
+    display:inline-block;
+    padding:8px 16px;
+    border:1.5px solid #4b4fe0;
+    border-radius:25px;
+    color:#4b4fe0;
+    text-decoration:none;
+    font-size:14px;
+  }
+
+  .more-btn:hover{
+    background:#4b4fe0;
+    color:#fff;
+  }
+
+  @media(max-width:900px){
+    .scheme-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:32px;}
+  }
+
+  /* ================= FOOTER ================= */
+  .footer-gap{height:60px;}
+
+  .footer{
+    background:#000;
+    color:#ccc;
+    padding:40px 20px 15px;
+  }
+
+  .footer-container{
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+    flex-wrap:wrap;
+  }
+
+  .footer-col{
+    flex:1;
+    min-width:250px;
+  }
+
+  .footer h3{
+    color:#fff;
+    margin-bottom:12px;
+  }
+
+  .footer p,.footer a{
+    color:#ccc;
+    font-size:14px;
+    line-height:1.6;
+    text-decoration:none;
+  }
+
+  .footer-links a{
+    display:block;
+    margin-bottom:6px;
+    color:#ffa500;
+  }
+
+  .digital-box{
+    background:#fff;
+    border-radius:16px;
+    padding:20px;
+    text-align:center;
+    max-width:200px;
+  }
+
+  .digital-box img{
+    max-width:100%;
+  }
+
+  .footer-bottom{
+    text-align:center;
+    margin-top:30px;
+    font-size:13px;
+    color:#aaa;
+  }
+
+  /* ===== MOBILE MENU BUTTON ===== */
+  .menu-toggle{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+  }
+
+  /* MOBILE MENU */
+  @media(max-width:900px){
+
+    .menu-toggle{
+      display:block;
+    }
+
+    .header-menu{
+      position:absolute;
+      top:100%;
+      right:0;
+      width:100%;
+      background:#fff;
+      flex-direction:column;
+      display:none;
+      box-shadow:0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .header-menu.active{
+      display:flex;
+    }
+
+    .header-menu li{
+      border-bottom:1px solid #eee;
+    }
+
+    /* SUBMENU MOBILE */
+    .submenu{
+      position:static;
+      box-shadow:none;
+      display:none;
+    }
+
+    .header-menu li.open .submenu{
+      display:block;
+    }
+  }
+
+
+
+  /* ===== MOBILE ===== */
+  @media(max-width:768px){
+    .image-card{
+      flex-direction:column;
+      text-align:center;
+    }
+
+    .scheme-img{
+      width:100%;
+    }
+  }
+
+  .yojana-section{
+    max-width:1200px;
+    margin:40px auto;
+    padding:0 20px;
+    display:flex;
+    flex-direction:column;
+    gap:26px;
+  }
+
+  .yojana-card{
+    position:relative;   /* ❗ MUST */
+    display:flex;
+    background:#cfa8e5;
+    border-radius:26px;
+    padding:24px;
+    gap:26px;
+     overflow:visible; /* IMPORTANT */
+  }
+
+
+  .yojana-img{
+    flex:0 0 220px;
+    background:#fff;
+    border-radius:22px;
+    padding:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .yojana-img img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+  }
+
+  .yojana-content{
+    flex:1;
+    padding-right:120px;   /* ✅ BUTTON साठी जागा */
+  }
+
+  .yojana-content h3{
+    font-size:26px;
+    margin-bottom:10px;
+  }
+
+  .yojana-content p{
+    font-size:16px;
+    line-height:1.6;
+  }
+
+  .yojana-btn{
+    position:absolute;
+    right:30px;
+    top:50%;
+    transform:translateY(-50%);
+    background:#ff9800;
+    color:#fff;
+    padding:10px 26px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    white-space:nowrap;
+  }
+
+
+  @media(max-width:900px){
+    .yojana-card{
+      flex-direction:column;
+    }
+
+    .yojana-content{
+      padding-right:0;
+    }
+
+    .yojana-btn{
+      position:static;
+      transform:none;
+      margin-top:14px;
+      align-self:flex-start;
+    }
+  }
+
+  /* ===== HERO TITLE ONLY (SCREENSHOT STYLE) ===== */
+  .hero-title-only{
+    background:#ffd6f5;
+    padding:60px 20px;
+  }
+
+  .hero-title-only .center{
+    display:flex;
+    justify-content:center;
+  }
+
+  .hero-badge{
+    border:3px solid #4b6cff;
+    color:red;
+    font-size:34px;
+    font-weight:bold;
+    padding:12px 40px;
+    border-radius:10px;
+    background:#ffffff;
+  }
+  @media(max-width:600px){
+    .hero-badge{
+      font-size:26px;
+      padding:10px 26px;
+    }
+  }
+
+  /* ===== AURA GLOW FOR YOJANA CARD ===== */
+.yojana-card::before{
+  content:"";
+  position:absolute;
+  inset:-3px;
+  border-radius:30px;
+  background:linear-gradient(
+    90deg,
+    #6a5cff,
+    #00c6ff,
+    #00ff9d,
+    #ffe259,
+    #ff6ec7,
+    #6a5cff
+  );
+  background-size:300% 300%;
+  filter:blur(8px);
+  opacity:0;
+  z-index:-1;
+  animation:auraMove 6s linear infinite;
+  transition:opacity .3s ease;
+}
+
+.yojana-card::after{
+  content:"";
+  position:absolute;
+  inset:2px;
+  background:#cfa8e5;
+  border-radius:26px;
+  z-index:-1;
+}
+
+.yojana-card:hover::before{
+  opacity:1;
+}
+
+
+
+/* ON SCROLL */
+.gp-header.shrink .header-container{
+  padding:8px 20px;
+}
+
+.gp-header.shrink .gp-logo{
+  height:48px;
+}
+
+.gp-header.shrink .gp-title{
+  font-size:18px;
+}
+
+.gp-header.shrink .header-menu a{
+  font-size:14px;
+}
+
+/* ===== SAME MOBILE VIEW FIX (HEADER) ===== */
+@media (max-width: 900px){
+
+  /* RESET NEGATIVE MARGIN */
+  .header-left{
+    margin-left:0;
+    justify-content:center;
+    width:100%;
+    text-align:center;
+  }
+
+  /* LOGO + TITLE */
+  .gp-logo{
+    height:55px;
+  }
+
+  .gp-title{
+    font-size:18px;
+    white-space:normal;
+    line-height:1.3;
+    text-align:center;
+  }
+
+  /* MENU */
+  .header-menu{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:#fff;
+    flex-direction:column;
+    display:none;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+  }
+
+  .header-menu.active{
+    display:flex;
+  }
+
+  .header-menu li{
+    width:100%;
+    border-bottom:1px solid #eee;
+  }
+
+  .header-menu a{
+    padding:12px 18px;
+    font-size:16px;
+  }
+
+  /* SUBMENU */
+  .submenu{
+    position:static;
+    box-shadow:none;
+    display:none;
+    background:#fafafa;
+  }
+
+  .header-menu li.open .submenu{
+    display:block;
+  }
+
+  /* ICONS CENTER */
+  .header-icons{
+    width:100%;
+    justify-content:center;
+    margin-top:8px;
+    gap:20px;
+  }
+}
+
+
+  </style>
+  </head>
+
+  <body>
+
+  <header class="gp-header">
+    <div class="header-container">
+
+      <div class="header-left">
+        <img src="assets\images\whatsapp20image202025-11-3020at2020.20.35-0acaf140-96x96.jpg" class="gp-logo">
+        <div class="gp-title">
+          ग्रामपंचायत कार्यालय,हिंगणगाव
+        </div>
+      </div>
+
+      <ul class="header-menu">
+        <li> <a href="index.html">मुखपृष्ठ</a></li>
+        
+        <li>
+          <a href="#">आमच्याविषयी ▾</a>
+          <div class="submenu">
+            <a href="grampanchayat-vishayi.html">ग्रामपंचायत विषयी</a>
+            <a href="panchayat-mandal.html">पंचायत मंडळ</a>
+            <a href="karmacharivarg.html">इतर कर्मचारी</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="#">सेवा ▾</a>
+          <div class="submenu">
+            <a href="karbhrna.html">कर प्रणाली भरणा</a>
+            <a href="swayamgoshna.html">स्वयं घोषणापत्रे</a>
+            <a href="#">दाखले</a>
+            <a href="sanketstale.html">महत्वाचे संकेतस्थळे</a>
+          </div>
+        </li>
+
+        <li><a href="yojna.html">योजना</a></li>
+        <li><a href="mahiti-adhikar.html">माहिती अधिकार</a></li>
+
+        <li>
+          <a href="#">इतर माहिती ▾</a>
+          <div class="submenu">
+            <a href="#">आर्थिक माहिती</a>
+            <a href="suchana.html">सूचना/जाहिरात/निविदा</a>
+            <a href="upakram.html">उपक्रम</a>
+            <a href="apatkalin.html">आपत्कालीन संपर्क</a>
+          </div>
+        </li>
+      </ul>
+
+      <!-- RIGHT : ICONS -->
+      <div class="header-icons">
+    <a href="tel:9623046374" title="Call">📞</a>
+    <a href="#" title="Email">✉️</a>
+    <a href="https://maps.app.goo.gl/MDPhHcR3mKkfcSRt7" target="_blank" title="Location">📍</a>
+    <!-- MOBILE MENU BUTTON -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </div>
+      
+
+    </div>
+  </header>
+
+
+  <div class="header-gap"></div>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero hero-title-only">
+    <div class="hero-content center">
+      <span class="hero-badge">शासकीय योजना</span>
+    </div>
+  </section>
+
+
+  <section class="yojana-section">
+
+    <!-- 9 -->
+    <div class="yojana-card">
+      <div class="yojana-img">
+        <img src="assets\logos\whatsapp20image202025-12-0120at2014.33.05-a0be541f-509x392.jpg">
+      </div>
+      <div class="yojana-content">
+        <h3>मुख्यमंत्री समृद्ध पंचायत राज अभियान</h3>
+        <p>
+          हा महाराष्ट्र शासनाचा अभियान ग्रामपंचायती सक्षम करण्यासाठी आहे.शाश्वत विकास, उत्पन्न वाढ, स्वच्छता, पाणीपुरवठा व योजना अंमलबजावणीवर भर देऊन गावांचा सर्वांगीण प्रगती साधण्याचा उद्देश मोहिमेचा आहे.
+        </p>
+        <a href="https://nagarzp.gov.in/scheme/%E0%A4%AE%E0%A5%81%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%AE%E0%A4%82%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A5%80-%E0%A4%B8%E0%A4%AE%E0%A5%83%E0%A4%A6%E0%A5%8D%E0%A4%A7-%E0%A4%AA%E0%A4%82%E0%A4%9A%E0%A4%BE%E0%A4%AF/" class="yojana-btn">लिंक</a>
+      </div>
+    </div>
+
+    <!-- 1 -->
+    <div class="yojana-card">
+      <div class="yojana-img">
+        <img src="assets\logos\whatsapp20image202025-12-0120at2003.12.22-2c59076c-600x600.jpeg">
+      </div>
+      <div class="yojana-content">
+        <h3>अनुसूचित जाती व नवबौद्ध विकास योजना</h3>
+        <p>
+          अनुसूचित जाती व नवबौद्ध वस्त्यांचा सर्वांगीण विकास हा या योजनेचा मुख्य उद्देश आहे.
+  रस्ते, पाणी, स्वच्छता, समाजमंदिर तसेच शिक्षण, प्रशिक्षण व आर्थिक सक्षमीकरणावर भर दिला जातो.
+        </p>
+        <a href="https://maharashtra.gov.in/" class="yojana-btn">लिंक</a>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="yojana-card">
+      <div class="yojana-img">
+        <img src="assets\logos\whatsapp20image202025-12-0120at2003.11.08-c95cb0cc-600x337.jpeg">
+      </div>
+      <div class="yojana-content">
+        <h3>भाग्यश्री “लेक माझी लाडकी”</h3>
+        <p>
+          ही महाराष्ट्र शासनाची योजना मुलींच्या जन्माला प्रोत्साहन देऊन स्त्रीभ्रूणहत्या रोखते व शिक्षणास चालना देते.
+  पिवळ्या-केशरी शिधापत्रिकाधारकांना जन्म, १ली, ६वी, ११वी व १८ वर्षांवर आर्थिक मदत मिळते.
+        </p>
+        <a href="https://mahabharti.in/yojana/lek-ladki-yojana/" class="yojana-btn">लिंक</a>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="yojana-card">
+      <div class="yojana-img">
+        <img src="assets\logos\whatsapp20image202025-12-0120at2003.08.27-ed5ef099-600x451.jpg">
+      </div>
+      <div class="yojana-content">
+        <h3>रमाई आवास योजना</h3>
+        <p>
+          ही महाराष्ट्रातील अनुसूचित जाती आणि नवबौद्ध घटकांसाठी घरकुल बांधण्यासाठी सुरू केलेली योजना आहे. ज्या अंतर्गत ग्रामीण आणि शहरी भागातील गरीब कुटुंबांना पक्की घरे मिळतात. या योजनेच्या मदतीने लाभार्थींना घरांसाठी आर्थिक मदत मिळते. ज्यामध्ये घर बांधण्यासाठी किंवा सुधारण्यासाठी अनुदान दिले जाते.
+        </p>
+        <a href="#" class="yojana-btn">लिंक</a>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="yojana-card">
+      <div class="yojana-img">
+        <img src="assets\logos\whatsapp20image202025-12-0120at2003.10.09-e158235d-600x365.jpeg">
+      </div>
+      <div class="yojana-content">
+        <h3>प्रधानमंत्री जन आरोग्य योजना (AB-PMJAY)</h3>
+        <p>
+        ही आरोग्य विमा योजना कुटुंबाला वर्षाला ५ लाखांपर्यंत मोफत, रोख-रहित उपचार देते.
+  दुय्यम व तृतीयक आरोग्यसेवेसाठी आयुष्मान कार्ड आवश्यक आहे.
+        </p>
+        <a href="#" class="yojana-btn">लिंक</a>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="yojana-card">
+      <div class="yojana-img">
+        <img src="assets\logos\whatsapp20image202025-12-0120at2003.05.08-29938d54-400x453.jpg">
+      </div>
+      <div class="yojana-content">
+        <h3>पीएम सूर्य घर मोफत वीज योजना</h3>
+        <p>
+          ही केंद्राची छतावरील सौर योजना पात्र कुटुंबांना ३०० युनिट मोफत वीज व ७८,००० अनुदान देते.
+  भारतीय नागरिकत्व, योग्य छत व वैध वीज कनेक्शन असणे आवश्यक आहे.
+        </p>
+        <a href="#" class="yojana-btn">लिंक</a>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="yojana-card">
+      <div class="yojana-img">
+        <img src="assets\logos\whatsapp20image202025-12-0120at2003.07.12-c15aa2ce-270x316.jpg">
+      </div>
+      <div class="yojana-content">
+        <h3>जल जीवन मिशन (JJM)</h3>
+        <p>
+          ही योजना प्रत्येक ग्रामीण घराला सुरक्षित व नियमित नळाचे पाणी देण्याचे उद्दिष्ट ठेवते.
+  “हर घर जल” अंतर्गत पाणीपुरवठ्यात परिवर्तन घडवून सार्वजनिक आरोग्य सुधारण्यावर भर आहे.
+        </p>
+        <a href="#" class="yojana-btn">लिंक</a>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="yojana-card">
+      <div class="yojana-img">
+        <img src="assets\logos\whatsapp-image-2025-12-02-at-10.53.48-am-1-712x401.jpeg">
+      </div>
+      <div class="yojana-content">
+        <h3>स्वच्छ भारत मिशन</h3>
+        <p>
+          ही राष्ट्रीय मोहीम उघड्यावर शौच बंद करणे व कचरा व्यवस्थापन सुधारण्यावर केंद्रित आहे.
+  ग्रामीण भागात शौचालये बांधणी व शहरी भागात स्वच्छता व घनकचरा व्यवस्थापनावर विशेष भर देण्यात येतो.
+        </p>
+        <a href="#" class="yojana-btn">लिंक</a>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="yojana-card">
+      <div class="yojana-img">
+        <img src="assets\logos\whatsapp20image202025-12-0220at2010.53.4820am-469x654.jpeg">
+      </div>
+      <div class="yojana-content">
+        <h3>महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार हमी योजना (MGNREGS)</h3>
+        <p>
+        ही योजना ग्रामीण प्रौढांना वर्षाला १०० दिवस रोजगाराची हमी देते.
+  १५ दिवसांत काम, वेतन थेट खात्यात, टंचाई कमी व संसाधन संवर्धनासाठी प्रभावी अंमलबजावणीची तरतूद आहे.
+        </p>
+        <a href="#" class="yojana-btn">लिंक</a>
+      </div>
+    </div>
+
+    
+
+    <!-- 10 -->
+    <div class="yojana-card">
+      <div class="yojana-img">
+        <img src="assets\logos\whatsapp20image202025-12-0120at2002.39.34-0320819a-485x494.jpeg">
+      </div>
+      <div class="yojana-content">
+        <h3>लाडकी बहीण योजना</h3>
+        <p>
+          ही महाराष्ट्र सरकारची एक आर्थिक मदत योजना आहे. ज्या अंतर्गत राज्यातील पात्र महिलांना दरमहा ₹1500 दिले जातात. ही योजना महिलांच्या आर्थिक सक्षमीकरणासाठी सुरू करण्यात आली आहे.
+        </p>
+        <a href="#" class="yojana-btn">लिंक</a>
+      </div>
+    </div>
+
+  </section>
+
+
+
+  <!-- 🔹 GAP BEFORE FOOTER -->
+  <div class="footer-gap"></div>
+
+  <footer class="footer">
+
+    <div class="footer-container">
+
+      <div class="footer-col">
+        <h3>कार्यालयीन पत्ता :</h3>
+        <p>
+          ग्रामपंचायत कार्यालय,हिंगणगाव<br>
+          तालुका : धामणगाव रेल्वे<br>
+          जिल्हा : अमरावती<br>
+          📞 संपर्क : 9623046374<br>
+          📧 ई-मेल : gphingangon12@gmail.com<br>
+        </p>
+      </div>
+
+      <div class="footer-col footer-links">
+        <h3>महत्वाचे</h3>
+        <a href="#">शासकीय निर्णय</a>
+        <a href="#">अमरावती जिल्हा परिषद</a>
+        <a href="#">महाराष्ट्र शासन</a>
+        <a href="#">भारत सरकार</a>
+        <a href="#">महाऑनलाईन</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>महत्वाचे</h3>
+        <p>Privacy Policy</p>
+        <p>Terms & Conditions</p>
+        <p>Disclaimer</p>
+        <p>Cancellation and Refund</p>
+        <p>Shipping and Delivery Policy</p>
+      </div>
+
+      <div class="footer-col">
+        <div class="digital-box">
+          <img src="assets\images\icon.webp" alt="Digital India">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      Copyright © 2025
+    </div>
+
+  </footer>
+
+  <!-- 🔹 SCROLL TO TOP BUTTON -->
+  <button id="topBtn">↑</button>
+
+  <script>
+  /* SCROLL REVEAL */
+  const reveals=document.querySelectorAll(".reveal");
+  window.addEventListener("scroll",()=>{
+    reveals.forEach(r=>{
+      const top=r.getBoundingClientRect().top;
+      if(top<window.innerHeight-100){
+        r.classList.add("active");
+      }
+    });
+
+    document.getElementById("topBtn").style.display =
+      window.scrollY>300 ? "block" : "none";
+  });
+
+  /* SCROLL TO TOP */
+  document.getElementById("topBtn").onclick = () =>
+    window.scrollTo({top:0,behavior:"smooth"});
+  </script>
+  <script>
+  function toggleMenu(){
+    document.querySelector(".header-menu").classList.toggle("active");
+  }
+
+  // Open submenu on mobile tap
+  document.querySelectorAll(".header-menu > li > a").forEach(link=>{
+    link.addEventListener("click",function(e){
+      if(window.innerWidth <= 900){
+        const parent = this.parentElement;
+        const submenu = parent.querySelector(".submenu");
+        if(submenu){
+          e.preventDefault();
+          parent.classList.toggle("open");
+        }
+      }
+    });
+  });
+  </script>
+
+  <script>
+const header = document.querySelector(".gp-header");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 80) {
+    header.classList.add("shrink");
+  } else {
+    header.classList.remove("shrink");
+  }
+});
+</script>
+
+
+  </body>
+  </html>

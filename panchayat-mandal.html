@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>पंचायत मंडळ</title>
+
+<style>
+
+@font-face{
+  font-family:'SakalBharati';
+  src:url('assets/fonts/SakalBharati.ttf') format('truetype');
+  font-weight:normal;
+  font-style:normal;
+}
+
+
+/* ===== HEADER ===== */
+.gp-header{
+  position:sticky;
+  top:0;
+   z-index:1000;
+   transition:all .35s ease;
+  background:#fff;
+  border-bottom:2px solid #d81b60;
+
+  /* ✅ ADDED */
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* add this to all */
+.header-container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:12px 10px; /* reduced from 20px */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+
+/* add this to all */
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-left:-100px; /* optional fine-tune */
+}
+
+/* add this to all */
+.gp-logo{
+  height:80px;
+  transition:all .35s ease;
+}
+/* add this to all */
+.gp-title{
+  font-size:28px;
+  color:#002060;
+  font-weight:900;
+  white-space:nowrap;
+  transition:all .35s ease;
+}
+
+/* ===== MENU WITH DROPDOWN ===== */ /* add this to all */
+.header-menu{
+  display:flex;
+  gap:22px;
+  margin-left:auto; /* pushes menu to right */
+}
+
+
+.header-menu li{
+  list-style:none;
+  position:relative;
+}
+
+.header-menu a{
+  text-decoration:none;
+  color:#002060;
+  font-size:15px;
+  font-weight:500;
+  padding:6px 4px;
+  display:block;
+}
+
+.header-menu a:hover{
+  color:#d81b60;
+}
+
+/* DROPDOWN */
+.submenu{
+  position:absolute;
+  top:100%;
+  left:0;
+  background:#fff;
+  min-width:230px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+  display:none;
+  z-index:999;
+}
+
+.submenu a{
+  padding:8px 12px;
+  font-size:14px;
+  border-bottom:1px solid #eee;
+}
+
+.submenu a:hover{
+  background:#ffd6f5;
+}
+
+.header-menu li:hover .submenu{
+  display:block;
+}
+
+/* RIGHT ICONS */
+.header-icons{
+  display:flex;
+  gap:16px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* HEADER GAP */
+.header-gap{
+  height:25px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .header-menu{display:none;}
+  .gp-title{font-size:18px;}
+}
+
+
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#ffd6f5;
+  font-family:SakalBharati, Arial, sans-serif;
+  margin:0;
+  scroll-behavior:smooth; /* ✅ ADDED */
+}
+
+/* 🔹 SCROLL REVEAL (ADDED) */
+.reveal{
+  opacity:0;
+  transform:translateX(-80px);
+  transition:all .8s ease;
+}
+.reveal.right{
+  transform:translateX(80px);
+}
+.reveal.active{
+  opacity:1;
+  transform:translateX(0);
+}
+
+.photo{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  border:2px solid #999;
+  object-fit:cover;
+  background:#eee;
+}
+
+
+/* HEADINGS */
+h1{
+  font-size:38px;
+  text-align:center;
+  color:red;
+  margin-bottom:30px;
+  
+}
+h2{
+  display:block;              /* ✅ make it block */
+  width:fit-content;          /* ✅ box width = text only */
+  margin:0 auto 35px;         /* ✅ perfect horizontal center */
+
+  font-size:22px;
+  color:#002060;
+  font-weight:bold;
+  padding:10px 22px;
+  border:3px solid #4762db;
+  border-radius:10px;
+  background:#ffffff;
+}
+h3{
+   font-size:20px;
+  color:#6a1b9a;
+  margin:25px 0 10px;
+  text-align:center;
+}
+
+/* TOP OFFICERS */
+.top-officers{
+  display:flex;
+  justify-content:space-around;
+  gap:30px;
+  margin-bottom:30px;
+  flex-wrap:wrap;
+}
+
+.officer-card{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  background:#ffe6fb;
+  padding:35px 40px;        /* 🔥 much bigger */
+  border-radius:24px;
+  border:1.5px solid #8bb6ff;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  min-width:520px;          /* 🔥 bigger card */
+}
+
+
+
+.photo{
+  width:170px;              /* 🔥 large */
+  height:170px;
+  border-radius:50%;
+  border:1.5px solid #8bb6ff;   /* 🔵 light blue border */
+  border:4px solid #002060;
+  object-fit:cover;
+  background:#eee;
+}
+
+
+.details{
+  font-size:16px;
+  color:#002060;
+}
+.details div{
+  margin-bottom:4px;
+}
+.label{
+  font-weight:bold;
+  color:red;
+}
+
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:#ffe6fb;
+}
+
+th, td{
+  border:1px solid #002060;
+  padding:8px;
+  text-align:center;
+  font-size:14px;
+}
+
+th{
+  font-size:20px;
+  color:red;
+  font-weight:bold;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .top-officers{
+    flex-direction:column;
+    align-items:center;
+  }
+}
+
+/* 🔹 GAP BEFORE FOOTER (ADDED) */
+.footer-gap{
+  height:60px;
+  background:#ffd6f5;
+}
+
+/* ================= FOOTER ================= */
+.footer-gap{height:60px;}
+
+.footer{
+  background:#000;
+  color:#ccc;
+  padding:40px 20px 15px;
+}
+
+.footer-container{
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  flex-wrap:wrap;
+}
+
+.footer-col{
+  flex:1;
+  min-width:250px;
+}
+
+.footer h3{
+  color:#fff;
+  margin-bottom:12px;
+}
+
+.footer p,.footer a{
+  color:#ccc;
+  font-size:14px;
+  line-height:1.6;
+  text-decoration:none;
+}
+
+.footer-links a{
+  display:block;
+  margin-bottom:6px;
+  color:#ffa500;
+}
+
+.digital-box{
+  background:#fff;
+  border-radius:16px;
+  padding:20px;
+  text-align:center;
+  max-width:200px;
+}
+
+.digital-box img{
+  max-width:100%;
+}
+
+.footer-bottom{
+  text-align:center;
+  margin-top:30px;
+  font-size:13px;
+  color:#aaa;
+}
+
+@media(max-width:768px){
+  .officer-row{flex-direction:column;gap:20px;}
+  .officer{width:100%;}
+  table{width:100%;}
+  .box:hover{transform:translateY(-6px);}
+  .footer-container{flex-direction:column;}
+}
+
+/* 🔹 SCROLL TO TOP BUTTON (ADDED) */
+#topBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#ff0808;
+  color:#fff;
+  border:none;
+  padding:10px 14px;
+  border-radius:50%;
+  font-size:18px;
+  cursor:pointer;
+  display:none;
+}
+
+/* ===== MOBILE MENU BUTTON ===== */
+.menu-toggle{
+  display:none;
+  font-size:28px;
+  cursor:pointer;
+}
+
+/* MOBILE MENU */
+@media(max-width:900px){
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .header-menu{
+    position:absolute;
+    top:100%;
+    right:0;
+    width:100%;
+    background:#fff;
+    flex-direction:column;
+    display:none;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+  }
+
+  .header-menu.active{
+    display:flex;
+  }
+
+  .header-menu li{
+    border-bottom:1px solid #eee;
+  }
+
+  /* SUBMENU MOBILE */
+  .submenu{
+    position:static;
+    box-shadow:none;
+    display:none;
+  }
+
+  .header-menu li.open .submenu{
+    display:block;
+  }
+}
+
+.members-title{
+  display:block;              /* ✅ make it block */
+  width:fit-content;          /* ✅ box width = text only */
+  margin:0 auto 35px;         /* ✅ perfect horizontal center */
+
+  font-size:22px;
+  color:#002060;
+  font-weight:bold;
+  padding:10px 22px;
+  border:3px solid #4762db;
+  border-radius:10px;
+  background:#ffffff;
+}
+
+/* ON SCROLL */
+.gp-header.shrink .header-container{
+  padding:8px 20px;
+}
+
+.gp-header.shrink .gp-logo{
+  height:48px;
+}
+
+.gp-header.shrink .gp-title{
+  font-size:18px;
+}
+
+.gp-header.shrink .header-menu a{
+  font-size:14px;
+}
+
+@media (max-width: 900px){
+  .header-left{
+    margin-left:0;
+    justify-content:center;
+    width:100%;
+    text-align:center;
+  }
+}
+/* ===== SAME MOBILE VIEW FIX ===== */
+@media (max-width: 900px){
+
+  /* RESET NEGATIVE MARGIN */
+  .header-left{
+    margin-left:0;
+    justify-content:center;
+    width:100%;
+    text-align:center;
+  }
+
+  /* LOGO + TITLE SIZE */
+  .gp-logo{
+    height:55px;
+  }
+
+  .gp-title{
+    font-size:18px;
+    white-space:normal;
+    line-height:1.3;
+    text-align:center;
+  }
+
+  /* MENU */
+  .header-menu{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:#fff;
+    flex-direction:column;
+    display:none;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+  }
+
+  .header-menu.active{
+    display:flex;
+  }
+
+  .header-menu li{
+    width:100%;
+    border-bottom:1px solid #eee;
+  }
+
+  .header-menu a{
+    padding:12px 18px;
+    font-size:16px;
+  }
+
+  /* SUBMENU */
+  .submenu{
+    position:static;
+    box-shadow:none;
+    display:none;
+    background:#fafafa;
+  }
+
+  .header-menu li.open .submenu{
+    display:block;
+  }
+
+  /* ICONS CENTER */
+  .header-icons{
+    width:100%;
+    justify-content:center;
+    margin-top:8px;
+    gap:20px;
+  }
+}
+
+
+</style>
+</head>
+
+<body>
+
+  <header class="gp-header">
+  <div class="header-container">
+
+    <div class="header-left">
+      <img src="assets\images\whatsapp20image202025-11-3020at2020.20.35-0acaf140-96x96.jpg" class="gp-logo">
+      <div class="gp-title">
+        ग्रामपंचायत कार्यालय,हिंगणगाव
+      </div>
+    </div>
+
+    <ul class="header-menu">
+      <li> <a href="index.html">मुखपृष्ठ</a></li>
+      
+      <li>
+        <a href="#">आमच्याविषयी ▾</a>
+        <div class="submenu">
+          <a href="grampanchayat-vishayi.html">ग्रामपंचायत विषयी</a>
+          <a href="panchayat-mandal.html">पंचायत मंडळ</a>
+          <a href="karmacharivarg.html">इतर कर्मचारी</a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">सेवा ▾</a>
+        <div class="submenu">
+          <a href="karbhrna.html">कर प्रणाली भरणा</a>
+          <a href="swayamgoshna.html">स्वयं घोषणापत्रे</a>
+          <a href="#">दाखले</a>
+          <a href="sanketstale.html">महत्वाचे संकेतस्थळे</a>
+        </div>
+      </li>
+
+      <li><a href="yojna.html">योजना</a></li>
+      <li><a href="mahiti-adhikar.html">माहिती अधिकार</a></li>
+
+      <li>
+        <a href="#">इतर माहिती ▾</a>
+        <div class="submenu">
+          <a href="#">आर्थिक माहिती</a>
+          <a href="suchana.html">सूचना/जाहिरात/निविदा</a>
+          <a href="upakram.html">उपक्रम</a>
+          <a href="apatkalin.html">आपत्कालीन संपर्क</a>
+        </div>
+      </li>
+    </ul>
+
+    <!-- RIGHT : ICONS -->
+   <div class="header-icons">
+  <a href="tel:9623046374" title="Call">📞</a>
+  <a href="#" title="Email">✉️</a>
+  <a href="https://maps.app.goo.gl/MDPhHcR3mKkfcSRt7" target="_blank" title="Location">📍</a>
+  <!-- MOBILE MENU BUTTON -->
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+   </div>
+    
+
+  </div>
+</header>
+
+
+
+<div class="header-gap"></div>
+
+
+<h1 class="reveal">पंचायत मंडळ</h1>
+<h2 class="reveal right">पदाधिकारी व सदस्य यांची माहिती</h2>
+
+
+
+<div class="top-officers reveal">
+
+  <div class="officer-card">
+    <img src="assets\images\sarpanch.jpeg" class="photo" alt="सरपंच फोटो">
+    <div class="details">
+      <div><span class="label">नाव :</span> श्री. दुर्गाबक्षसिंह रा. ठाकुर</div>
+      <div><span class="label">पदनाम :</span> सरपंच</div>
+      <div><span class="label">संपर्क :</span> ९४२१७३७७७५</div>
+      <div><span class="label">प्रवर्ग :</span> सर्वसाधारण</div>
+      <div><span class="label">प्रभाग :</span> ०१</div>
+    </div>
+  </div>
+
+  <div class="officer-card">
+    <img src="assets\images\upsarpanch.jpeg" class="photo" alt="उपसरपंच फोटो">
+    <div class="details">
+      <div><span class="label">नाव     :</span> सौ. संगिता म. धोटे</div>
+      <div><span class="label">पदनाम   :</span> उपसरपंच</div>
+      <div><span class="label">संपर्क    :</span> ९४०३०५४०८४</div>
+      <div><span class="label">प्रवर्ग :</span> सर्वसाधारण स्त्री</div>
+      <div><span class="label">प्रभाग :</span> ०२</div>
+    </div>
+  </div>
+
+</div>
+
+
+<h3 class="members-title">सदस्यांची माहिती</h3>
+
+
+<table class="reveal">
+  <tr>
+  <th>अनु. क्र.</th>
+  <th>सदस्याचे नाव</th>
+  <th>पदनाम</th>
+  <th>प्रवर्ग</th>
+  <th>प्रभाग</th>
+  <th>संपर्क</th>
+</tr>
+
+
+  <tr><td>१</td><td>श्री. प्रदिप ना. पातोडे</td><td>सदस्य</td><td>ना.मा.प्र.</td><td>०१</td><td>९५११६०५२०५</td></tr>
+  <tr><td>२</td><td>सौ. रुचिता अ. भागवत</td><td>सदस्य</td><td>सर्वसाधारण स्त्री</td><td>०१</td><td>९३२५९२४६९९</td></tr>
+  <tr><td>३</td><td>श्री. विलास म. चौधरी</td><td>सदस्य</td><td>सर्वसाधारण</td><td>०२</td><td>९९२३४३०१०६</td></tr>
+  <tr><td>४</td><td>सौ. उज्वला सु. वानखडे</td><td>सदस्य</td><td>अनु. जाती स्त्री</td><td>०२</td><td>८७८८३५०१४५</td></tr>
+  <tr><td>५</td><td>विलास शा. हेंडवे</td><td>सदस्य</td><td>अनु. जाती</td><td>०३</td><td>९५६१०७७२४३</td></tr>
+  <tr><td>६</td><td>नंदा नं. शेंडे</td><td>सदस्य</td><td>ना.मा.प्र.स्त्री</td><td>०३</td><td>९८३४२१६३६५</td></tr>
+  <tr><td>७</td><td>श्रीमती हिरा सु. गाणार</td><td>सदस्य</td><td>सर्वसाधारण</td><td>०३</td><td>९८६०७०५२३१</td></tr>
+</table>
+
+<!-- 🔹 GAP BEFORE FOOTER -->
+<div class="footer-gap"></div>
+
+<footer class="footer">
+
+  <div class="footer-container">
+
+    <div class="footer-col">
+        <h3>कार्यालयीन पत्ता :</h3>
+        <p>
+          ग्रामपंचायत कार्यालय,हिंगणगाव<br>
+          तालुका : धामणगाव रेल्वे<br>
+          जिल्हा : अमरावती<br>
+          📞 संपर्क : 9623046374<br>
+          📧 ई-मेल : gphingangon12@gmail.com<br>
+        </p>
+      </div>
+
+    <div class="footer-col footer-links">
+      <h3>महत्वाचे</h3>
+      <a href="#">शासकीय निर्णय</a>
+      <a href="#">अमरावती जिल्हा परिषद</a>
+      <a href="#">महाराष्ट्र शासन</a>
+      <a href="#">भारत सरकार</a>
+      <a href="#">महाऑनलाईन</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>महत्वाचे</h3>
+      <p>Privacy Policy</p>
+      <p>Terms & Conditions</p>
+      <p>Disclaimer</p>
+      <p>Cancellation and Refund</p>
+      <p>Shipping and Delivery Policy</p>
+    </div>
+
+    <div class="footer-col">
+      <div class="digital-box">
+        <img src="assets\images\icon.webp" alt="Digital India">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    Copyright © 2025
+  </div>
+
+</footer>
+
+<!-- 🔹 SCROLL TO TOP BUTTON -->
+<button id="topBtn">↑</button>
+
+<script>
+/* SCROLL REVEAL */
+const reveals=document.querySelectorAll(".reveal");
+window.addEventListener("scroll",()=>{
+  reveals.forEach(r=>{
+    const top=r.getBoundingClientRect().top;
+    if(top<window.innerHeight-100){
+      r.classList.add("active");
+    }
+  });
+
+  document.getElementById("topBtn").style.display =
+    window.scrollY>300 ? "block" : "none";
+});
+
+/* SCROLL TO TOP */
+document.getElementById("topBtn").onclick = () =>
+  window.scrollTo({top:0,behavior:"smooth"});
+</script>
+<script>
+function toggleMenu(){
+  document.querySelector(".header-menu").classList.toggle("active");
+}
+
+// Open submenu on mobile tap
+document.querySelectorAll(".header-menu > li > a").forEach(link=>{
+  link.addEventListener("click",function(e){
+    if(window.innerWidth <= 900){
+      const parent = this.parentElement;
+      const submenu = parent.querySelector(".submenu");
+      if(submenu){
+        e.preventDefault();
+        parent.classList.toggle("open");
+      }
+    }
+  });
+});
+</script>
+
+<script>
+const header = document.querySelector(".gp-header");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 80) {
+    header.classList.add("shrink");
+  } else {
+    header.classList.remove("shrink");
+  }
+});
+</script>
+
+</body>
+</html>
