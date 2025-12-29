@@ -140,7 +140,7 @@
 body{
   margin:0;
 
-  background:#ffe0f7;
+  background:#ffd6ec;
   font-family:SakalBharati, Arial, sans-serif;
   scroll-behavior:smooth; /* ✅ ADDED */
 }
@@ -294,7 +294,7 @@ body{
 }
 
 .notice-item:hover{
-  background:#ffe6f0; /* optional hover effect */
+  background:#ffd6ec; /* optional hover effect */
 }
 
 /* ================= PHOTO GALLERY ================= */
@@ -1084,6 +1084,69 @@ body{
   }
 }
 
+/* ================= OFFICER CARDS ================= */
+.officer-section{
+  background:#ffd6ec;
+  padding:60px 20px;
+}
+
+.officer-container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+.officer-card{
+  background:#c9a3dd;
+  border-radius:30px;
+  padding:30px 20px 35px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.officer-img{
+  width:300px;
+  height:350px;
+  margin:-80px auto 20px;
+  background:#fff;
+  border-radius:24px;
+  overflow:hidden;
+}
+
+.officer-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.officer-name{
+  font-size:20px;
+  font-weight:800;
+  color:#000;
+  margin-bottom:6px;
+}
+
+.officer-post{
+  font-size:16px;
+  font-weight:700;
+  color:#000;
+  line-height:1.5;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .officer-container{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+@media(max-width:600px){
+  .officer-container{
+    grid-template-columns:1fr;
+  }
+}
+
 
 </style>
 </head>
@@ -1299,6 +1362,50 @@ body{
 
 </div>
 
+
+</section>
+
+<section class="officer-section">
+
+  <div class="officer-container">
+
+    <!-- CARD 1 -->
+    <div class="officer-card">
+      <div class="officer-img">
+        <img src="assets/images/sarpanch.jpeg" alt="सरपंच">
+      </div>
+      <div class="officer-name">श्री. दुर्गाबक्षसिंह रा. ठाकुर</div>
+      <div class="officer-post">सरपंच</div>
+    </div>
+
+    <!-- CARD 2 -->
+    <!-- CARD 2 : UPDATED -->
+<div class="officer-card">
+  <div class="officer-img">
+    <img src="assets/images/adhikari.jpeg" alt="ग्रामपंचायत अधिकारी">
+  </div>
+
+  <div class="officer-name">
+    श्री. सचिन गणपतराव तसर
+  </div>
+
+  <div class="officer-post">
+    ग्रामपंचायत अधिकारी<br>
+    तथा जन माहिती अधिकारी
+  </div>
+</div>
+
+
+    <!-- CARD 3 -->
+    <div class="officer-card">
+      <div class="officer-img">
+        <img src="assets/images/upsarpanch.jpeg" alt="उपसरपंच">
+      </div>
+      <div class="officer-name">सौ. संगिता म. धोटे</div>
+      <div class="officer-post">उपसरपंच</div>
+    </div>
+
+  </div>
 
 </section>
 
