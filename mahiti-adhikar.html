@@ -512,6 +512,42 @@ th{background:#f2b6e8;}
   }
 }
 
+/* ===== OFFICER CARD MOBILE FIX ===== */
+@media (max-width: 768px){
+
+  .officer-row{
+    flex-direction: column;      /* stack cards */
+    align-items: center;
+    gap: 20px;
+  }
+
+  .officer{
+    flex-direction: column;      /* image on top */
+    text-align: center;
+    gap: 16px;
+    padding: 20px;
+    min-width: auto;             /* 🔥 remove fixed width */
+    width: 92%;                  /* fit screen */
+  }
+
+  .photo{
+    width: 120px;                /* smaller photo */
+    height: 120px;
+  }
+
+  .label{
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .contact{
+    font-size: 14px;
+  }
+}
+.officer{
+  transition: all 0.3s ease;
+}
+
 </style>
 </head>
 
