@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ग्रामपंचायत कार्यालय, घाटलाडकी</title>
+<title>ग्रामपंचायत कर्मचारी माहिती</title>
 
 <style>
-
-  @font-face{
+@font-face{
   font-family:'SakalBharati';
   src:url('assets/fonts/SakalBharati.ttf') format('truetype');
   font-weight:normal;
   font-style:normal;
 }
 
-  /* ===== HEADER ===== */
+
+/* ===== HEADER ===== */
 .gp-header{
   position:sticky;
   top:0;
@@ -237,8 +237,6 @@ body{
   color:#fff;
 }
 
-
-
 /* ================= NOTICE BOARD ================= */
 .notice-board{
   background:#fff;
@@ -298,7 +296,6 @@ body{
 .notice-item:hover{
   background:#ffe6f0; /* optional hover effect */
 }
-
 
 /* ================= PHOTO GALLERY ================= */
 .gallery-grid{
@@ -564,6 +561,7 @@ body{
     height:50vh;
   }
 }
+
 /* MAIN TWO COLUMN LAYOUT */
 .info-wrapper{
   max-width:100%;
@@ -734,14 +732,21 @@ body{
 .section-gallery-wide .masonry-gallery img{
   margin-bottom:24px;
 }
-/* ================= FOOTER GAP ================= */
-.footer-gap{height:60px;}
 
 
+
+/* 🔹 GAP BEFORE FOOTER (ADDED) */
+.footer-gap{
+  height:60px;
+  background:#ffe0f7;
+}
+
+/* FOOTER (UNCHANGED) */
 .footer{
   background:#000;
   color:#ccc;
   padding:40px 20px 15px;
+  font-family:Mangal, Arial, sans-serif;
 }
 
 .footer-container{
@@ -759,13 +764,19 @@ body{
 .footer h3{
   color:#fff;
   margin-bottom:12px;
+  font-size:16px;
 }
 
-.footer p,.footer a{
+.footer p,
+.footer a{
   color:#ccc;
   font-size:14px;
   line-height:1.6;
   text-decoration:none;
+}
+
+.footer a:hover{
+  color:#ffa500;
 }
 
 .footer-links a{
@@ -793,6 +804,169 @@ body{
   color:#aaa;
 }
 
+@media(max-width:768px){
+  .footer-container{
+    flex-direction:column;
+  }
+}
+
+/* 🔹 SCROLL TO TOP BUTTON (ADDED) */
+#topBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#ff0808;
+  color:#fff;
+  border:none;
+  padding:10px 14px;
+  border-radius:50%;
+  font-size:18px;
+  cursor:pointer;
+  display:none;
+}
+
+
+/* ===== MOBILE MENU BUTTON ===== */
+.menu-toggle{
+  display:none;
+  font-size:28px;
+  cursor:pointer;
+}
+
+/* MOBILE MENU */
+@media(max-width:900px){
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .header-menu{
+    position:absolute;
+    top:100%;
+    right:0;
+    width:100%;
+    background:#fff;
+    flex-direction:column;
+    display:none;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+  }
+
+  .header-menu.active{
+    display:flex;
+  }
+
+  .header-menu li{
+    border-bottom:1px solid #eee;
+  }
+
+  /* SUBMENU MOBILE */
+  .submenu{
+    position:static;
+    box-shadow:none;
+    display:none;
+  }
+
+  .header-menu li.open .submenu{
+    display:block;
+  }
+}
+
+/* Mobile friendly */
+@media(max-width:768px){
+  h1{
+    font-size:26px;
+  }
+  h2{
+    font-size:18px;
+  }
+}
+
+/* ON SCROLL */
+.gp-header.shrink .header-container{
+  padding:8px 20px;
+}
+
+.gp-header.shrink .gp-logo{
+  height:48px;
+}
+
+.gp-header.shrink .gp-title{
+  font-size:18px;
+}
+
+.gp-header.shrink .header-menu a{
+  font-size:14px;
+}
+
+/* ===== SAME MOBILE VIEW FIX (HEADER) ===== */
+@media (max-width: 900px){
+
+  /* RESET NEGATIVE MARGIN */
+  .header-left{
+    margin-left:0;
+    justify-content:center;
+    width:100%;
+    text-align:center;
+  }
+
+  /* LOGO + TITLE */
+  .gp-logo{
+    height:55px;
+  }
+
+  .gp-title{
+    font-size:18px;
+    white-space:normal;
+    line-height:1.3;
+    text-align:center;
+  }
+
+  /* MENU */
+  .header-menu{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:#fff;
+    flex-direction:column;
+    display:none;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+  }
+
+  .header-menu.active{
+    display:flex;
+  }
+
+  .header-menu li{
+    width:100%;
+    border-bottom:1px solid #eee;
+  }
+
+  .header-menu a{
+    padding:12px 18px;
+    font-size:16px;
+  }
+
+  /* SUBMENU */
+  .submenu{
+    position:static;
+    box-shadow:none;
+    display:none;
+    background:#fafafa;
+  }
+
+  .header-menu li.open .submenu{
+    display:block;
+  }
+
+  /* ICONS CENTER */
+  .header-icons{
+    width:100%;
+    justify-content:center;
+    margin-top:8px;
+    gap:20px;
+  }
+}
 
 /* STATS SECTION */
 .stats-section{
@@ -843,293 +1017,6 @@ body{
 @media(max-width:400px){
   .stats-container{
     grid-template-columns:1fr;
-  }
-}
-
-
-
-
-/* ===== MOBILE MENU BUTTON ===== */
-.menu-toggle{
-  display:none;
-  font-size:28px;
-  cursor:pointer;
-}
-
-/* MOBILE MENU */
-@media (max-width: 900px){
-
-  .header-menu{
-    left:0;
-    right:0;
-    width:100%;
-    max-height:80vh;
-    overflow-y:auto;
-  }
-
-  .header-menu a{
-    padding:14px 16px;
-    font-size:16px;
-  }
-
-  .submenu a{
-    padding-left:30px;
-    font-size:15px;
-  }
-}
-
-
-
-/* ================= HEADER SHRINK EFFECT ================= */
-
-/* Smooth animation */
-.gp-header,
-.header-container,
-.gp-logo,
-.gp-title{
-  transition: all 0.35s ease;
-}
-
-/* BIG HEADER (TOP) */
-.gp-header{
-  padding-top: 10px;
-}
-
-/* WHEN SCROLLED */
-.gp-header.shrink{
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-/* CONTAINER SHRINK */
-.gp-header.shrink .header-container{
-  padding:8px 24px;
-}
-
-/* LOGO SHRINK */
-.gp-header.shrink .gp-logo{
-  height:48px;
-}
-
-
-.gp-header.shrink .gp-title{
-  font-size:18px;
-}
-
-
-
-/* TITLE SHRINK */
-.gp-header.shrink .gp-title{
-  font-size: 16px;     /* ⬇ from 20px */
-  line-height: 1.1;
-}
-
-/* MENU TEXT SLIGHT SHRINK */
-.gp-header.shrink .header-menu a{
-  font-size: 14px;
-}
-
-/* HEADER LEFT ALIGNMENT */
-.header-left{
-  display:flex;
-  align-items:center;
-  gap:16px;
-}
-
-/* BIG LOGO */
-.gp-logo{
-  height:80px;        /* ⬆ BIG */
-  transition:all 0.35s ease;
-}
-
-/* BIG TITLE – ONE LINE */
-.gp-title{
-  font-size:28px;     /* ⬆ BIG TEXT */
-  font-weight:900;
-  color:#002060;
-  white-space:nowrap; /* ✅ ONE LINE */
-  transition:all 0.35s ease;
-}
-
-@media (max-width: 900px){
-
-  .header-menu{
-    left:0;
-    right:0;
-    width:100%;
-    max-height:80vh;
-    overflow-y:auto;
-  }
-
-  .header-menu a{
-    padding:14px 16px;
-    font-size:16px;
-  }
-
-  .submenu a{
-    padding-left:30px;
-    font-size:15px;
-  }
-}
-
-@media (max-width: 768px){
-
-  .hero{
-    height:60vh;
-    min-height:360px;
-  }
-
-  .hero h1{
-    font-size:22px;
-    line-height:1.3;
-  }
-
-  .hero-content{
-    padding:0 14px;
-  }
-}
-@media (max-width: 768px){
-  .welcome-text{
-    font-size:16px;
-    padding:14px;
-    margin:14px;
-  }
-}
-@media (max-width: 900px){
-
-  .info-wrapper{
-    margin:40px auto;
-    gap:24px;
-  }
-
-  .village-box,
-  .notice-box{
-    padding:24px;
-    border-radius:22px;
-    min-height:auto;
-  }
-
-  .notice-box{
-    border-radius:28px;
-  }
-}
-@media (max-width: 768px){
-
-  .stat-card{
-    padding:26px 14px;
-    border-radius:18px;
-  }
-
-  .stat-card h2{
-    font-size:24px;
-  }
-
-  .stat-card p{
-    font-size:14px;
-  }
-}
-@media (max-width: 768px){
-
-  .video-wrapper{
-    border-radius:16px;
-  }
-
-  .video-wrapper video{
-    width:100%;
-    height:40vh;
-  }
-}
-@media (max-width: 768px){
-
-  .footer-container{
-    flex-direction:column;
-    gap:20px;
-  }
-
-  .footer-col{
-    min-width:100%;
-  }
-
-  .digital-box{
-    margin:auto;
-  }
-}
-
-@media (max-width: 1200px){
-  .header-left{
-    margin-left:-60px;
-  }
-}
-
-/* ================= FINAL MOBILE MENU FIX ================= */
-@media (max-width: 900px){
-
-  /* SHOW ☰ ICON */
-  .menu-toggle{
-    display:block;
-  }
-
-  /* HIDE MENU INITIALLY */
-  .header-menu{
-    display:none;
-    position:absolute;
-    top:100%;
-    left:0;
-    width:100%;
-    background:#fff;
-    flex-direction:column;
-    box-shadow:0 6px 20px rgba(0,0,0,0.15);
-    z-index:999;
-  }
-
-  /* SHOW MENU WHEN ACTIVE */
-  .header-menu.active{
-    display:flex;
-  }
-
-  .header-menu li{
-    border-bottom:1px solid #eee;
-  }
-
-  /* SUBMENU */
-  .submenu{
-    position:static;
-    display:none;
-    box-shadow:none;
-  }
-
-  .header-menu li.open .submenu{
-    display:block;
-  }
-}
-
-img, video{
-  max-width:100%;
-  height:auto;
-}
-
-/* TWO VIDEOS LAYOUT */
-.video-two{
-  display:flex;
-  gap:20px;
-  padding:20px;
-}
-
-.video-two video{
-  width:50%;
-  height:60vh;
-  object-fit:contain;
-  border-radius:16px;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  .video-two{
-    flex-direction:column;
-  }
-
-  .video-two video{
-    width:100%;
-    height:40vh;
   }
 }
 
@@ -1191,12 +1078,14 @@ img, video{
   }
 }
 
+
 </style>
 </head>
 
 <body>
 
-<header class="gp-header">
+  
+  <header class="gp-header">
   <div class="header-container">
 
     <div class="header-left">
@@ -1247,12 +1136,17 @@ img, video{
   <a href="tel:9623046374" title="Call">📞</a>
   <a href="#" title="Email">✉️</a>
   <a href="https://maps.app.goo.gl/MDPhHcR3mKkfcSRt7" target="_blank" title="Location">📍</a>
+  <!-- MOBILE MENU BUTTON -->
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
    </div>
     
 
   </div>
 </header>
+
+
+<div class="header-gap"></div>
+
 
 <!-- ================= HERO ================= -->
 <section class="hero">
@@ -1542,17 +1436,15 @@ img, video{
 
 
 
-
 <!-- 🔹 GAP BEFORE FOOTER -->
 <div class="footer-gap"></div>
 
 <footer class="footer">
 
   <div class="footer-container">
-
-    <div class="footer-col">
+<div class="footer-col">
         <h3>कार्यालयीन पत्ता :</h3>
-        <p>
+       <p>
           ग्रामपंचायत कार्यालय,हिंगणगाव<br>
           तालुका : धामणगाव रेल्वे<br>
           जिल्हा : अमरावती<br>
@@ -1635,6 +1527,7 @@ document.querySelectorAll(".header-menu > li > a").forEach(link=>{
   });
 });
 </script>
+
 <script>
 const header = document.querySelector(".gp-header");
 
@@ -1646,28 +1539,6 @@ window.addEventListener("scroll", () => {
   }
 });
 </script>
-
-<script>
-let currentSlide = 0;
-const slides = document.querySelectorAll(".hero-slide");
-const dots = document.querySelectorAll(".dot");
-
-function showSlide(index){
-  slides.forEach(slide => slide.classList.remove("active"));
-  dots.forEach(dot => dot.classList.remove("active"));
-
-  slides[index].classList.add("active");
-  dots[index].classList.add("active");
-  currentSlide = index;
-}
-
-/* AUTO SLIDE */
-setInterval(() => {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
-}, 4000);
-</script>
-
 
 </body>
 </html>
