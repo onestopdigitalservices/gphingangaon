@@ -1135,17 +1135,38 @@ body{
   line-height:1.5;
 }
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  .officer-container{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
+/* ===== OFFICER CARD MOBILE FIX ===== */
 @media(max-width:600px){
+
+  .officer-section{
+    padding:40px 15px;
+  }
+
   .officer-container{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr;   /* ONE CARD PER ROW */
+    gap:60px;                    /* MORE SPACE */
+  }
+
+  .officer-card{
+    padding-top:90px;            /* SPACE FOR IMAGE */
+  }
+
+  .officer-img{
+    margin:-70px auto 16px;      /* CONTROL IMAGE FLOAT */
+    width:140px;
+    height:140px;
+  }
+
+  .officer-name{
+    font-size:18px;
+  }
+
+  .officer-post{
+    font-size:15px;
+    line-height:1.4;
   }
 }
+
 
 
 </style>
