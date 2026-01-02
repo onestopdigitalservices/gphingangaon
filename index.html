@@ -680,10 +680,25 @@ body{
 
 /* NOTICE AUTO SCROLL BOX */
 .notice-scroll{
-  height:260px;             /* visible area */
-  overflow:hidden;
+  height:260px;
+  overflow-y:auto;        /* ✅ allow user scroll */
+  overflow-x:hidden;
   position:relative;
+  scrollbar-width: thin; /* Firefox */
 }
+
+/* Chrome / Edge scrollbar */
+.notice-scroll::-webkit-scrollbar{
+  width:6px;
+}
+.notice-scroll::-webkit-scrollbar-thumb{
+  background:#d81b60;
+  border-radius:10px;
+}
+.notice-scroll::-webkit-scrollbar-track{
+  background:#ffe0f7;
+}
+
 
 /* MOVING CONTENT */
 .notice-move{
@@ -691,8 +706,10 @@ body{
   flex-direction:column;
   gap:12px;
 
-  animation: moveUp 12s linear infinite;
+  padding-top:50px;          /* ✅ FIX */
+  animation: moveUp 30s linear infinite;
 }
+
 
 /* PAUSE ON HOVER */
 .notice-scroll:hover .notice-move{
@@ -708,6 +725,7 @@ body{
     transform:translateY(-50%);
   }
 }
+
 
 /* WELCOME TEXT BELOW HERO */
 .welcome-text{
@@ -792,9 +810,9 @@ body{
 }
 
 .digital-box{
-  background:#fff;
+  
   border-radius:16px;
-  padding:20px;
+ 
   text-align:center;
   max-width:200px;
 }
@@ -1325,6 +1343,72 @@ body{
   <div class="notice-scroll">
 
   <div class="notice-move">
+
+    <a href="suchana.html" class="notice-link">
+    <div class="notice-item">
+      <div class="notice-date">25/12/2025 <span class="notice-new">NEW</span></div>
+      दिनांक 31/12/2025 रोजी सकाळी 11 वाजता मासिक सभेचे आयोजन ग्रामपंचायत कार्यालयात करण्यात येत आहे.
+    </div>
+    </a>
+    
+     <a href="suchana.html" class="notice-link">
+    <div class="notice-item">
+      <div class="notice-date">15 जून 2025 <span class="notice-new">NEW</span></div>
+      दिनांक 31/12/ 2025 पर्यत
+ "मुख्यमंत्री समृद्ध पंचायतराज अभियान" अंतर्गत घर कर  मध्ये 50% सूट देण्यात येत आहे.
+    </div>
+    </a>
+      <a href="suchana.html" class="notice-link">
+    <div class="notice-item">
+      <div class="notice-date">25/11/2025</div>
+      दिनांक 28/11/2025 रोजी मासिक सभेचे आयोजन करण्यात येत आहे.
+    </div>
+    </a>
+       <a href="suchana.html" class="notice-link">
+    <div class="notice-item">
+      <div class="notice-date">10/11/2025</div>
+      दिनांक 14/11/2025 रोजी ग्रामसभा चे आयोजन करण्यात येत आहे.
+    </div>
+    </a>
+    <a href="suchana.html" class="notice-link">
+    <div class="notice-item">
+      <div class="notice-date">15/10/2025</div>
+      दिनांक 17/10 /2025 रोजी मासिक सभा चे आयोजन करण्यात येत आहे.
+    </div>
+    </a>
+    <a href="suchana.html" class="notice-link">
+    <div class="notice-item">
+      <div class="notice-date">25/9/2025</div>
+      2/10/2025 रोजी स्वच्छता अभियान हिंगणगाव ग्रामपंचायत कडून राबविण्यात येत आहे.
+    </div>
+    </a>
+    <a href="suchana.html" class="notice-link">
+    <div class="notice-item">
+      <div class="notice-date">12/09/2025</div>
+      दिनांक 17/9/2025 रोजी मुख्यमंत्री समृद्ध पंचायतराज अभियान राबवण्यासंबंधी विशेष ग्रामसभा ग्रामपंचायत कार्यालयामध्ये आयोजित करण्यात येत आहे.
+    </div>
+    </a>
+    <a href="suchana.html" class="notice-link">
+    <div class="notice-item">
+      <div class="notice-date">10/08/2025</div>
+      दिनांक 17/9/2025 रोजी रक्तदान शिबिर व आरोग्य तपासणी कार्यक्रम ग्रामपंचायत कार्यालयामध्ये राबविण्यात येत आहे.
+
+    </div>
+    </a>
+    </a>
+    <a href="suchana.html" class="notice-link">
+    <div class="notice-item">
+      <div class="notice-date">29/7/2025</div>
+       दिनांक 1/8/2025  रोजी मा.गटविकास अधिकारी साहेब यांची ग्रामपंचायत कार्यालयास भेट.
+
+    </div>
+    </a>
+<a href="suchana.html" class="notice-link">
+    <div class="notice-item">
+      <div class="notice-date">25/12/2025 <span class="notice-new">NEW</span></div>
+      दिनांक 31/12/2025 रोजी सकाळी 11 वाजता मासिक सभेचे आयोजन ग्रामपंचायत कार्यालयात करण्यात येत आहे.
+    </div>
+    </a>
     
      <a href="suchana.html" class="notice-link">
     <div class="notice-item">
@@ -1700,6 +1784,29 @@ function autoSlide(){
 setInterval(autoSlide, 4000);
 </script>
 
+<script>
+const noticeMove = document.querySelector(".notice-move");
+const noticeScroll = document.querySelector(".notice-scroll");
+
+let isUserScrolling = false;
+
+/* Pause animation when user interacts */
+noticeScroll.addEventListener("mouseenter", () => {
+  noticeMove.style.animationPlayState = "paused";
+});
+
+noticeScroll.addEventListener("mouseleave", () => {
+  noticeMove.style.animationPlayState = "running";
+});
+
+noticeScroll.addEventListener("touchstart", () => {
+  noticeMove.style.animationPlayState = "paused";
+});
+
+noticeScroll.addEventListener("touchend", () => {
+  noticeMove.style.animationPlayState = "running";
+});
+</script>
 
 </body>
 </html>
